@@ -17,12 +17,12 @@ int main(/*int argc, char *argv[]*/)
 
   while (true) {
     char *prompt = newPrompt(MAX_PROMPT_LENGTH);
-    
+    warning("TEST", );
     if(!memcmp(prompt, "EXIT", 4)) {
       printf("bye!\n");
       return EXIT_SUCCESS;
     }
-    
+
     debug("Prompt", "%s", prompt);
     debug("Prompt length", "%lu", strlen(prompt));
     free(prompt);
@@ -38,7 +38,7 @@ char * newPrompt(int promptLength) {
   fgets(prompt, promptLength, stdin);
 
   for (int i = 0; i < MAX_PROMPT_LENGTH; i++) {
-    // Chars: A-Z a-z ( ) * + , - . / ^
+    // Filter chars: A-Z a-z ( ) * + , - . / ^
     int c = (int)prompt[i];
     if ((40 <= c && c <= 57) 
     || ( 65 <= c && c <= 90)
