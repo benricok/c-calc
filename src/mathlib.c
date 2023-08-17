@@ -10,6 +10,8 @@ float getfloat(char *arr, int size, int *ptr);
 enum MathOperator getOperator(char *arr, int *ptr);
 float calc(float a, float b, enum MathOperator OPERATOR);
 
+enum MathFunc getFunc(char *arr, int *ptr); 
+
 // Convert char array of float or integer type to float
 // Note: ignores multiple decimal indicators '.'
 float getfloat(char *arr, int size, int *ptr) {
@@ -46,6 +48,18 @@ float getfloat(char *arr, int size, int *ptr) {
   return f + d;
 }
 
+enum MathFunc getFunc(char *arr, int *ptr) {
+  debug("MathFunc start char: ", "%c", arr[*ptr]);
+  int itr = *ptr;
+  char token[] = "";
+
+  for (int itr = *ptr; itr < MAX_BUFF; itr++) {
+
+  
+  }
+
+}
+
 enum MathOperator getOperator(char *arr, int *ptr) {
   debug("Operator", "%c", arr[*ptr]);
   int i = *ptr;
@@ -79,3 +93,4 @@ float calc(float a, float b, enum MathOperator OPERATOR) {
       break;
   }
 }
+

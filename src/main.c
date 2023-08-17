@@ -16,24 +16,24 @@ int main() {
   printf("\033[0;33mSuper Simple C Calculator\033[0m");
 
   //char input[MAX_BUFF], expression[MAX_BUFF] = "";
-  int exLenth = 0;
-  bool inLoop = true;
-
-  while (inLoop) {
+  int expressLength = 0;
+  
+  while (true) {
 
   char *input = newPrompt();
   char *expression = malloc(MAX_BUFF);
-     
-  if (!memcmp(input, "exit", 4)) {
+   
+  // error("Hello", );  
+  if (!memcmp(input, "exit", 4) || !memcmp(input, "EXIT", 4)) { 
     printf("Bye!\n");
     return 0; 
-  
   }
+
   // Check if expression starts with a number
-  if ((int)input[0] == 0 || !(47 < (int)input[0] && (int)input[0] < 58)) {
-    fprintf(stderr, "\033[0;31mWARNING: Your expression has to start with a number\n\033[0m");
-    return 1;
-  }
+  // if ((int)input[0] == 0 || !(47 < (int)input[0] && (int)input[0] < 58)) {
+  //  fprintf(stderr, "\033[0;31mWARNING: Your expression has to start with a number\n\033[0m");
+  //  return 1;
+  // }
 
   // Filter expression for only allowed characters and remove spaces
   for (int i = 0; i < MAX_BUFF; i++)
@@ -46,11 +46,11 @@ int main() {
     {
       // Convert , to . for numbers with decimals
       if ((int)input[i] == 44) {
-        expression[exLenth] = 46;
+        expression[expressLength] = 46;
       } else {
-        expression[exLenth] = input[i];
+        expression[expressLength] = input[i];
       }
-      exLenth++;
+      expressLength++;
     }
   }
 
@@ -58,15 +58,15 @@ int main() {
   int indexState = 0;
   float valA = 0.0, valB = 0.0;
   enum MathOperator operator;
-
+  
   debug("Filtered Expression","%s", expression);
-  debug("Expression Length", "%d", exLenth);
+  debug("Expression Length", "%d", expressLength);
 
-  for (; curIndex < exLenth-1;) {
+  for (; curIndex < expressLength-1;) {
     debug("Current Index", "%d", curIndex);
     switch (indexState) {
       case 0:
-        valA = getfloat(expression, exLenth, &curIndex);
+        valA = getfloat(expression, expressLength, &curIndex);
         indexState++;
         break;
       case 1:
@@ -74,7 +74,7 @@ int main() {
         indexState++;
         break;
       case 2:
-        valB = getfloat(expression, exLenth, &curIndex);
+        valB = getfloat(expression, expressLength, &curIndex);
         valA = calc(valA, valB, operator);
         indexState++;
         break;
