@@ -11,47 +11,51 @@
 
 char * newPrompt(int promptLength);
 
-int main(/*int argc, char *argv[]*/)
-{
-  printf("\033[0;33mSuper Simple C Calculator\033[0m");
+int main(/*int argc, char *argv[]*/) {
+    printf("\033[0;33mSuper Simple C Calculator\033[0m");
 
-  while (true) {
-    char *prompt = newPrompt(MAX_PROMPT_LENGTH);
-    warning("TEST", );
-    if(!memcmp(prompt, "EXIT", 4)) {
-      printf("bye!\n");
-      return EXIT_SUCCESS;
+    while (true) {
+        char *prompt = newPrompt(MAX_PROMPT_LENGTH);
+    
+        expressionErr("Test error 1", prompt, 0, MAX_PROMPT_LENGTH);
+        // expressionErr("Test error 2", prompt, 3, MAX_PROMPT_LENGTH);
+    
+        if(!memcmp(prompt, "exit", 4)) {
+            printf("bye!\n");
+            return EXIT_SUCCESS;
+        }
+
+        debug("Prompt", "%s", prompt);
+        debug("Prompt length", "%lu", strlen(prompt));
+        free(prompt);
     }
-
-    debug("Prompt", "%s", prompt);
-    debug("Prompt length", "%lu", strlen(prompt));
-    free(prompt);
-  }
   return EXIT_SUCCESS;
 }
 
 char * newPrompt(int promptLength) {
-  int buffIdx = -1;
-  char * prompt = (char*) malloc(promptLength);
-  char * buff = (char*) malloc(promptLength);
-  printf("\n>>> ");
-  fgets(prompt, promptLength, stdin);
+    int buffIdx = -1;
+    char * prompt = (char*) malloc(promptLength);
+    char * buff = (char*) malloc(promptLength);
 
-  for (int i = 0; i < MAX_PROMPT_LENGTH; i++) {
-    // Filter chars: A-Z a-z ( ) * + , - . / ^
-    int c = (int)prompt[i];
-    if ((40 <= c && c <= 57) 
-    || ( 65 <= c && c <= 90)
-    || ( 97 <= c && c <= 122)
-    || (c == 94)) {
-      buffIdx++;
-      buff[buffIdx] = toupper(c);
+    printf("\n>>> ");
+    fgets(prompt, promptLength, stdin);
+
+    for (int i = 0; i < MAX_PROMPT_LENGTH; i++) {
+        // Filter chars: A-Z a-z ( ) * + , - . / ^
+        int c = (int)prompt[i];
+        if ((40 <= c && c <= 57) 
+        || ( 65 <= c && c <= 90)
+        || ( 97 <= c && c <= 122)
+        || (c == 94)) {
+        buffIdx++;
+        buff[buffIdx] = tolower(c);
+        }
     }
-  }
 
-  char * filtered = (char*) malloc(buffIdx+1);
-  memcpy(filtered, buff, buffIdx + 1);
-  free(prompt);
-  free(buff);
-  return filtered;
+    char * filtered = (char*) malloc(buffIdx+1);
+    memcpy(filtered, buff, buffIdx + 1);
+    free(prompt);
+    free(buff);
+    return filtered;
 }
+

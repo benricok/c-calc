@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -pedantic -I include/
 LIB = 
 TARG = calc
 BINRDIR = /usr/local/bin 
-OBJ = src/main.o 
+OBJ = $(wildcard src/*.o) $(wildcard include/*.c)# src/main.o
 
 all: $(TARG)
 
