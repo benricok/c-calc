@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DEBUG_ENABLED 1
+
 #define debug(name, fmt, ...) \
     do { \
         if (DEBUG_ENABLED) { \

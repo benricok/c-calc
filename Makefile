@@ -17,7 +17,7 @@ run: $(TARG)
 	./$(TARG)
 
 clean:
-	rm -f $(OBJ) $(TARG)
+	rm -f $(TARG) # $(OBJ)
 
 uninstall:
 	rm -f $(BINRDIR)/$(TARG) 
