@@ -5,6 +5,7 @@
 #include <string.h>
 #include <debug.h>
 #include <wchar.h>
+#include <cmd.h>
 
 #define DEBUG_ENABLED 1
 #define MAX_PROMPT_LENGTH 100
@@ -17,13 +18,15 @@ int main(/*int argc, char *argv[]*/) {
     while (true) {
         char *prompt = newPrompt(MAX_PROMPT_LENGTH);
     
-        expressionErr("Test error 1", prompt, 0, MAX_PROMPT_LENGTH);
+        //expressionErr("Test error 1", prompt, 0, MAX_PROMPT_LENGTH);
         // expressionErr("Test error 2", prompt, 3, MAX_PROMPT_LENGTH);
     
-        if(!memcmp(prompt, "exit", 4)) {
-            printf("bye!\n");
-            return EXIT_SUCCESS;
-        }
+        // if(!memcmp(prompt, "exit", 4)) {
+        //     printf("bye!\n");
+        //     return EXIT_SUCCESS;
+        // }
+
+        checkForCmd(prompt, strlen(prompt));
 
         debug("Prompt", "%s", prompt);
         debug("Prompt length", "%lu", strlen(prompt));

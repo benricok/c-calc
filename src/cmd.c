@@ -5,6 +5,7 @@ static void cmd_help(void * data) {
 }
 
 static void cmd_exit(void *data) {
+    printf("bye!\n");
     exit(0);
 }
 
@@ -16,10 +17,6 @@ struct cmd commands[] = {
     }, {
         4,
         "help",
-        cmd_help,
-    }, {
-        1,
-        "?",
         cmd_help,
     }
 };
