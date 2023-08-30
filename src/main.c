@@ -37,8 +37,8 @@ int main(/*int argc, char *argv[]*/) {
 
 char * newPrompt(int promptLength) {
     int buffIdx = -1;
-    char * prompt = (char*) malloc(promptLength);
-    char * buff = (char*) malloc(promptLength);
+    char * prompt = malloc(sizeof *prompt * promptLength);
+    char * buff = malloc(sizeof *buff * promptLength);
 
     printf("\n>>> ");
     fgets(prompt, promptLength, stdin);

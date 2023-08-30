@@ -8,7 +8,7 @@
 //  - (...)
 //  - ...
 float parseValFromStr(char *str, int length) {
-  char * buff = (char *) malloc(length);
+  char * buff = malloc(sizeof *buff * length);
   bool isFloat = false;
   float f = 0.0;
   int d = 0, j = 0;
@@ -38,15 +38,5 @@ float parseValFromStr(char *str, int length) {
   free(buff);
   return f + d;
 }
-
-//typedef void (*command_handler)(void *);
-//command_handler command_handlers[] = { exit, help };
-
-// enum registeredCommands {
-//     exit,
-//     help,
-// }
-
-
 
 

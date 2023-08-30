@@ -24,7 +24,7 @@ struct cmd commands[] = {
 void checkForCmd(char *prompt, int length) {
     size_t size = sizeof(commands) / sizeof(commands[0]);
     
-    for (int i = 0;  i < size; i++) {
+    for (size_t i = 0;  i < size; i++) {
         if (length >= commands[i].nameLen) {
             if (!memcmp(prompt, commands[i].name, commands[i].nameLen)) {
                 commands[i].cmd(0);
